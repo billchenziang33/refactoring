@@ -22,7 +22,6 @@ public class StatementPrinter {
      * @throws RuntimeException if one of the play types is not known
      */
     public String statement() {
-        final int totalAmount = getTotalAmount();
 
         final StringBuilder result = new StringBuilder("Statement for "
                 + invoice.getCustomer() + System.lineSeparator());
@@ -32,7 +31,7 @@ public class StatementPrinter {
             result.append(String.format("  %s: %s (%s seats)%n", getPlay(p).getName(),
                     usd(getAmount(p)), p.getAudience()));
         }
-        result.append(String.format("Amount owed is %s%n", usd(totalAmount)));
+        result.append(String.format("Amount owed is %s%n", usd(getTotalAmount())));
         result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
         return result.toString();
     }
